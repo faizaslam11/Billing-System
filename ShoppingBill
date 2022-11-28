@@ -1,87 +1,83 @@
-package ipl;  
-// change the name of package as yours
+package ipl;
+
 import java.util.Scanner;
-
 public class PheonixMall {
+	
+	public String typeOfCustomer;
+	static int productNumber;
+	static int costPerUnit;
+	static int quantityPurchased;
+	static int totalAmount;
+
+	public static void main(String[] args) throws Exception {
+
+		//Enter Customer Details
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter type of Customer:");
+		System.out.println("'R' for Regular Customer and 'S' for Special Customer : "); 
+		String typeOfCustomer = sc.nextLine();
+		System.out.println("Enter product Number: ");
+		productNumber = sc.nextInt();
+		System.out.println("Enter cost Per Unit: ");
+		costPerUnit = sc.nextInt();
+		//Cost price must be greater than 10
+		if(costPerUnit<10) {
+			System.out.println("WARNING!!!");
+			System.out.println("please enter value greater than 10:  ");
+		}
+		
+		//Quantity must be betwenn 1 and 100
+		if(quantityPurchased>100) {
+			System.out.println("WARNING!!!");
+			System.out.println("please enter value less than 100: ");
+		}
+		
+		System.out.println("Enter Quantity Purchased:");
+		quantityPurchased = sc.nextInt();
+		
+		//TotalAmount for Normal Cusromer
+		//No Discounts 
+		totalAmount = costPerUnit * quantityPurchased;
+		System.out.println("Total Amount: "+ totalAmount);
+		
+			        
+		//Discounts for Regular Customer:R
+		if (typeOfCustomer.equals("R") && totalAmount > 1000) 
+		{
+			   totalAmount = (totalAmount) - (totalAmount * 5 / 100);
+			   System.out.println("Total Amount  After Discount For Total is More Than 1000: " + totalAmount);
+		} else if (typeOfCustomer.equals("R")) {
+			    System.out.println("Total Amount :" + totalAmount);
+
+		}
 
 
-
-   String typeOfCustomer;
-    static int productNumber;
-    static int costPerUnit;
-    static int quantityPurchased;
-     int totalAmout;
-
-
-
-   public static void main(String[] args) throws Exception {
-
-
-
-       PheonixMall obj = new PheonixMall();
-        try {
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Enter type of Customer (R/S): ");
-            obj.typeOfCustomer = sc.nextLine();
-            System.out.println("Enter product Number: ");
-            obj.productNumber = sc.nextInt();
-            System.out.println("Enter cost Per Unit: ");
-            obj.costPerUnit = sc.nextInt();
-            if(        obj.costPerUnit<10) {
-            	System.out.println("---------------------------------------------");
-                System.out.println("please enter value greater than 10:  ");
-                System.out.println("---------------------------------------------");
-                obj.costPerUnit = sc.nextInt();
-            }
-            System.out.println("Enter Quantity Purchased:");
-            obj.quantityPurchased = sc.nextInt();
-            if(obj.quantityPurchased>100) {
-            	System.out.println("---------------------------------------------");
-                System.out.println("please enter value less than 100: ");
-                System.out.println("---------------------------------------------");
-                obj.quantityPurchased = sc.nextInt();
-            }
-            obj.totalAmout = obj.costPerUnit * obj.quantityPurchased;
-            System.out.println("Total Amount:" + obj.totalAmout);
-        
-        }catch(Exception e) {
-            System.out.println(e);
-            }
-        
-        
-            if (obj.typeOfCustomer.equals("r") && obj.totalAmout > 1000) {
-                obj.totalAmout = (obj.totalAmout) - (obj.totalAmout * 5 / 100);
-                System.out.println("Total Amount  After Discount For Total is More Than 1000: " + obj.totalAmout);
-            } else if (obj.typeOfCustomer.equals("r")) {
-                System.out.println(" Total Amount =" + obj.totalAmout);
-
-
-
-           }
-            if (obj.typeOfCustomer.equals("s") && obj.totalAmout > 1000) {
-                obj.totalAmout = (obj.totalAmout) - (obj.totalAmout * 15 / 100);
-                System.out.println("Total Amount  After Discount For Special Customer And Total is More Than 1000: "
-                        + obj.totalAmout);
-            } else if (obj.typeOfCustomer.equals("s")) {
-                obj.totalAmout = (obj.totalAmout) - (obj.totalAmout * 10 / 100);
-                System.out.println("Total Amountr  After Discount For Special Customer:  " + obj.totalAmout);
-            }
+		//Discounts for Special Customer:S
+		if (typeOfCustomer.equals("S") && totalAmount > 1000)
+		{
+		totalAmount = (totalAmount) - (totalAmount * 15 / 100);
+		System.out.println("Total Amount  After Discount For Special Customer And Total is More Than 1000: " + totalAmount);
+		} else if (typeOfCustomer.equals("S")) 
+			{
+			    totalAmount = (totalAmount) - (totalAmount * 10 / 100);
+			    System.out.println("Total Amount  After Discount For Special Customer:  " + totalAmount);
+			}
             System.out.println("\t\t\t\t--------------------Invoice-----------------");  
             System.out.println("\t\t\t\t\t "+"  "+"Pheonix Mall");  
             System.out.println("\t\t\t\t\t3/98 Hinjawedi Pune");  
             System.out.println("\t\t\t\t\t"  +"    " +"Opposite LTIMindtree ");  
-            System.out.println("GSTIN: 03FAIZ56K592"+"\t\t\t\t\t\t\tContact: (+91) 8171011960"); 
+            System.out.println("GSTIN: 03AWBPP8756K592"+"\t\t\t\t\t\t\tContact: (+91) 8171011960"); 
             
             System.out.format("-----------------------------------------------------------------------------------------------------------------------------------");  
             System.out.print("\nProduct Number \t\tCost per Unit\t\tQuantity \t\t\t\tTotal Price\n");  
             System.out.format("-----------------------------------------------------------------------------------------------------------------------------------\n");  
 //            System.out.println("\n\t\t\t\t\t\t\t\t\t\tTotal Amount (Rs.) " +totalAmout); s
             
-            System.out.format("   %-9d             %-9d      %7d                     " ,productNumber, costPerUnit, quantityPurchased );  
-            System.out.println("\t\t\t\t----------------Thank You for Shopping!!-----------------");  
-             System.out.println("\t\t\t\t                     Visit Again");  
+            System.out.format("   %-9d             %-9d      %7d                  %25"
+            		+ "d   " ,productNumber, costPerUnit, quantityPurchased, totalAmount );  
 
     }
 
-}
 
+
+}
